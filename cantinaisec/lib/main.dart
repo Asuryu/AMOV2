@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CantinaISEC',
+      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.deepOrange,
       ),
-      home: const MyHomePage(title: 'Cantina ISEC'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -33,109 +31,54 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  Color? _backgroundColor;
 
   void _incrementCounter() {
     setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
       _counter++;
     });
-    _updateBackgroundColor();
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-    _updateBackgroundColor();
-  }
-
-  void _updateBackgroundColor(){
-    _backgroundColor = Color.fromRGBO(
-      Random().nextInt(255), Random().nextInt(255), Random().nextInt(255), 1.0);
   }
 
   @override
   Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: _backgroundColor,
       appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlutterLogo(
-              size: _counter >= 10 ? 200 : 0,
-            ),
             const Text(
               'You have pushed the button this many times:',
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '$_counter',
-                  style: const TextStyle(fontSize: 50),
-                ),
-                const Text(
-                  '€',
-                  style: TextStyle(fontSize: 50),
-                ),
-              ],
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
             ),
-            ElevatedButton(
-              onPressed: () => setState(() {
-                _counter = 0;
-              }), 
-              child: const Text('Reset')
-              ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                const Text(
-                  'Saldo:',
-                ),
-                Text(
-                  '$_counter',
-                  style: const TextStyle(fontSize: 50),
-                ),
-              ],
-            )
+            
           ],
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(width: 10),
-          FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
-          ),
-        ],
-      ),
-      persistentFooterButtons: [
-        Center(
-          child: TextButton(
-            onPressed: () {},
-            child: const Text('Carregar'),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text('Transferir'),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text('Histórico'),
-        ),],
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

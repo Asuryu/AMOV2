@@ -74,103 +74,25 @@ class _MyHomePageState extends State<MyHomePage> {
           tooltip: 'Refresh',
           child: const Icon(Icons.refresh),
         ),
-        body: Center(
+        body: Container(
+          padding: const EdgeInsets.only(top: 20, left: 15, right: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: const Text(
-                  'Menu Semanal',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontFamily: 'AdiNeuePRO',
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                height: 250,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: days.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: 200,
-                        child: Card(
-                          color: Colors.deepOrange,
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  days[index],
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: const Text(
-                                  'Sopa',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO'),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: const Text(
-                                  'Prato Carne',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO'),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: const Text(
-                                  'Prato Peixe',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO'),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: const Text(
-                                  'Prato Vegatariano',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO'),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: const Text(
-                                  'Sobremesa',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'AdiNeuePRO'),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-              ),
-            ],
-          ),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const <Widget>[
+                Text('Menu Semanal',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontFamily: "AdiNeuePRO",
+                        fontWeight: FontWeight.bold)),
+                Text("Clicar na carta da refeição permite editá-la",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 180, 180, 180),
+                        fontSize: 15,
+                        fontFamily: "AdiNeuePRO",
+                        fontWeight: FontWeight.normal)),
+              ]),
         ),
-        backgroundColor: Color.fromARGB(255, 17, 17, 17));
+        backgroundColor: const Color.fromARGB(255, 17, 17, 17));
   }
 }

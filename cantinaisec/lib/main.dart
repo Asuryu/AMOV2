@@ -37,6 +37,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  List<String> days = [
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira'
+  ];
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -70,17 +78,95 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Menu Semanal',
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontFamily: 'AdiNeuePRO',
-                    fontWeight: FontWeight.bold),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'Menu Semanal',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
+              Container(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: days.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 200,
+                        child: Card(
+                          color: Colors.deepOrange,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  days[index],
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Sopa',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO'),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Prato Carne',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO'),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Prato Peixe',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO'),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Prato Vegatariano',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO'),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Sobremesa',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'AdiNeuePRO'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
               ),
             ],
           ),

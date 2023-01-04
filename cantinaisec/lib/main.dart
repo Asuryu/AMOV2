@@ -46,33 +46,45 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Refresh',
-        child: const Icon(Icons.refresh),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Card(
-              child: Text(
-                'You have pushed the button this many times:',
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'images/icon.png',
+                fit: BoxFit.contain,
+                height: 50,
               ),
-            ),
-            const Card(
-              child: Text(
-                'You have pushed the button this many times:',
-              ),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+              Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text('Cantina ISEC'))
+            ],
+          ),
         ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 26, 26, 26),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Refresh',
+          child: const Icon(Icons.refresh),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const Text(
+                'Menu Semanal',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontFamily: 'AdiNeuePRO',
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 17, 17, 17));
   }
 }

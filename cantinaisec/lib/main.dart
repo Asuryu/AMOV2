@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'Refresh',
         child: const Icon(Icons.refresh),
       ),
       body: Center(

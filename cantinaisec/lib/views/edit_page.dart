@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:cantinaisec/models/menu.dart';
 
 class EditPage extends StatelessWidget {
   //const EditPage({Key? key, required this.selectedMenu, required this.weekDay})
-  const EditPage({Key? key, required this.weekDay})
-      : super(key: key);
+  const EditPage({Key? key, required this.weekDay}) : super(key: key);
 
   //final Menu selectedMenu;
   final String? weekDay;
@@ -31,9 +29,7 @@ class EditPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 252, 158, 70),
-          onPressed: () => {
-
-          },
+          onPressed: () => {},
           tooltip: 'Refresh',
           child: const Icon(Icons.save),
         ),

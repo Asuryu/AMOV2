@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.0.15
   camera: ^0.10.1
   location: ^4.4.0
+  http: any
 
 dev_dependencies:
   flutter_test:

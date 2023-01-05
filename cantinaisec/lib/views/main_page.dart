@@ -86,12 +86,10 @@ class MealCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => const EditPage(weekDay: "Segunda-feira")),
+            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay)),
           );
         },
         child: Container(
-            // Set width of the container to the max width of the screen
             width: 350,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 43, 43, 43),

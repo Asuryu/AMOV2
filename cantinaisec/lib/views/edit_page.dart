@@ -27,10 +27,73 @@ class EditPage extends StatelessWidget {
             ],
           ),
         ),
+        // generate a list of input fields with labels (sopa, carne, peixe, vegetariano, sobremesa)
+        // set input text color and border to white (background is black)
+        // add padding to the text fields
+        body: Container(
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
+            alignment: Alignment.center,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: const [
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    ),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 37, 37, 37),
+                    labelText: 'Sopa',
+                    labelStyle: TextStyle(color: Colors.deepOrange),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 37, 37, 37),
+                    labelText: 'Carne',
+                    labelStyle: TextStyle(color: Colors.deepOrange),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 37, 37, 37),
+                    labelText: 'Peixe',
+                    labelStyle: TextStyle(color: Colors.deepOrange),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 37, 37, 37),
+                    labelText: 'Vegetariano',
+                    labelStyle: TextStyle(color: Colors.deepOrange),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 37, 37, 37),
+                    labelText: 'Sobremesa',
+                    labelStyle: TextStyle(color: Colors.deepOrange),
+                  ),
+                ),
+              ],
+            )),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 252, 158, 70),
+          backgroundColor: const Color.fromARGB(255, 252, 158, 70),
           onPressed: () => {},
-          tooltip: 'Refresh',
+          tooltip: 'Update',
           child: const Icon(Icons.save),
         ),
         backgroundColor: const Color.fromARGB(255, 17, 17, 17));

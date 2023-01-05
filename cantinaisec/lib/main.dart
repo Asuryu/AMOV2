@@ -336,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(
                       width: 350,
                       decoration: BoxDecoration(
-                        color: Colors.deepOrange,
+                        color: Color.fromARGB(255, 43, 43, 43),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       padding: const EdgeInsets.only(

@@ -78,20 +78,77 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.only(top: 20, left: 15, right: 10),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const <Widget>[
-                Text('Menu Semanal',
+              children: <Widget>[
+                const Text('Menu Semanal',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
                         fontFamily: "AdiNeuePRO",
                         fontWeight: FontWeight.bold)),
-                Text("Clicar na carta da refeição permite editá-la",
+                const Text("Clicar na carta da refeição permite editá-la",
                     style: TextStyle(
                         color: Color.fromARGB(255, 180, 180, 180),
                         fontSize: 15,
                         fontFamily: "AdiNeuePRO",
                         fontWeight: FontWeight.normal)),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EditPage(
+                                title: '',
+                              )),
+                    );
+                  },
+                  child: const Text('Editar'),
+                ),
               ]),
+        ),
+        backgroundColor: const Color.fromARGB(255, 17, 17, 17));
+  }
+}
+
+class EditPage extends StatefulWidget {
+  const EditPage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'images/icon.png',
+                fit: BoxFit.contain,
+                height: 50,
+              ),
+              Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text('Cantina ISEC'))
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Refresh',
+          child: const Icon(Icons.refresh),
         ),
         backgroundColor: const Color.fromARGB(255, 17, 17, 17));
   }

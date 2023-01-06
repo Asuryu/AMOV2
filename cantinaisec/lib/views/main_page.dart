@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cantinaisec/views/edit_page.dart';
-import 'dart:convert';
+import 'dart:convert' show jsonDecode, utf8;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,13 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> days = [
-    'Segunda-feira',
-    'Terça-feira',
-    'Quarta-feira',
-    'Quinta-feira',
-    'Sexta-feira'
-  ];
+  List<String> days = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
 
   Map<String, dynamic> menu = {};
 
@@ -54,11 +48,9 @@ class _HomePageState extends State<HomePage> {
             // get the menu from the server
             // save the menu in shared preferences
             // CircularProgressIndicator
-            Future<http.Response> response =
-                http.get(Uri.parse('http://94.61.156.105:8080/menu'));
+            Future<http.Response> response = http.get(Uri.parse('http://94.61.156.105:8080/menu'));
             response.then((value) {
               menu = jsonDecode(value.body);
-              debugPrint(menu.toString());
               SharedPreferences.getInstance().then((prefs) {
                 prefs.setString('menu', menu.toString());
               });
@@ -69,46 +61,45 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.refresh),
       ),
       body: FutureBuilder<http.Response>(
-        future: http
-            .get(Uri.parse('http://94.61.156.105:8080/menu'))
-            .timeout(const Duration(seconds: 5)),
+        future: http.get(Uri.parse('http://94.61.156.105:8080/menu'), headers: {"Content-Type": "application/json"}).timeout(const Duration(seconds: 5)),
         builder: (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
           if (snapshot.hasData) {
             menu = jsonDecode(snapshot.data!.body);
+            var menuMonday = menu["MONDAY"]["update"] ?? menu["MONDAY"]["original"];
+            var menuTuesday = menu["TUESDAY"]["update"] ?? menu["TUESDAY"]["original"];
+            var menuWednesday = menu["WEDNESDAY"]["update"] ?? menu["WEDNESDAY"]["original"];
+            var menuThursday = menu["THURSDAY"]["update"] ?? menu["THURSDAY"]["original"];
+            var menuFriday = menu["FRIDAY"]["update"] ?? menu["FRIDAY"]["original"];
             return Container(
-                padding: const EdgeInsets.only(
-                    top: 20, bottom: 20, left: 0, right: 0),
+                padding: const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
                 alignment: Alignment.center,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    MealCard(
-                      weekDay: "Segunda-Feira",
-                      menu: menu,
-                      imagePath: "images/segunda.png",
-                    ),
-                    MealCard(
-                      weekDay: "Terça-Feira",
-                      menu: menu,
-                      imagePath: "images/terca.png",
-                    ),
-                    MealCard(
-                      weekDay: "Quarta-Feira",
-                      menu: menu,
-                      imagePath: "images/quarta.png",
-                    ),
-                    MealCard(
-                      weekDay: "Quinta-Feira",
-                      menu: menu,
-                      imagePath: "images/quinta.png",
-                    ),
-                    MealCard(
-                      weekDay: "Sexta-Feira",
-                      menu: menu,
-                      imagePath: "images/sexta.png",
-                    ),
-                  ],
-                ));
+                child: ListView(scrollDirection: Axis.horizontal, children: [
+                  MealCard(
+                    weekDay: "Segunda-Feira",
+                    menu: menuMonday,
+                    imagePath: "images/segunda.png",
+                  ),
+                  MealCard(
+                    weekDay: "Terça-Feira",
+                    menu: menuTuesday,
+                    imagePath: "images/terca.png",
+                  ),
+                  MealCard(
+                    weekDay: "Quarta-Feira",
+                    menu: menuWednesday,
+                    imagePath: "images/terca.png",
+                  ),
+                  MealCard(
+                    weekDay: "Quinta-Feira",
+                    menu: menuThursday,
+                    imagePath: "images/terca.png",
+                  ),
+                  MealCard(
+                    weekDay: "Sexta-Feira",
+                    menu: menuFriday,
+                    imagePath: "images/terca.png",
+                  ),
+                ]));
           } else if (snapshot.hasError) {
             return const Center(
                 child: Text(
@@ -125,12 +116,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MealCard extends StatelessWidget {
-  const MealCard(
-      {Key? key,
-      required this.weekDay,
-      required this.imagePath,
-      required this.menu})
-      : super(key: key);
+  const MealCard({Key? key, required this.weekDay, required this.imagePath, required this.menu}) : super(key: key);
 
   final String weekDay;
   final String imagePath;
@@ -146,9 +132,7 @@ class MealCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => EditPage(
-                    weekDay: weekDay, filePath: imagePath, menu: menu)),
+            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay, filePath: imagePath, menu: menu)),
           );
         },
         child: Container(
@@ -157,8 +141,7 @@ class MealCard extends StatelessWidget {
               color: const Color.fromARGB(255, 43, 43, 43),
               borderRadius: BorderRadius.circular(20),
             ),
-            padding:
-                const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
+            padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 15),
             alignment: Alignment.topCenter,
             child: ListView(
               shrinkWrap: true,
@@ -230,7 +213,7 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(menu["MONDAY"]["update"]['soup'],
+                    Text(utf8.decode(menu['soup'].toString().codeUnits),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -261,7 +244,7 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(menu["MONDAY"]["update"]['meat'],
+                    Text(utf8.decode(menu['meat'].toString().codeUnits),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -292,7 +275,7 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(menu["MONDAY"]["update"]['fish'],
+                    Text(utf8.decode(menu['fish'].toString().codeUnits),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -323,7 +306,9 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(menu["MONDAY"]["update"]['vegetarian'],
+                    Text(
+                        // convert to string utf8
+                        utf8.decode(menu['vegetarian'].toString().codeUnits),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -354,7 +339,7 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(menu["MONDAY"]["update"]['soup'],
+                    Text(utf8.decode(menu['desert'].toString().codeUnits),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,

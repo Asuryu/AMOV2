@@ -136,7 +136,7 @@ class EditPage extends StatelessWidget {
             )),
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 252, 158, 70),
-          onPressed: () => {},
+          onPressed: () => {Navigator.pop(context)},
           tooltip: 'Update',
           child: const Icon(Icons.save),
         ),

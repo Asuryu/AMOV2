@@ -5,7 +5,7 @@ class EditPage extends StatelessWidget {
   const EditPage({Key? key, required this.weekDay}) : super(key: key);
 
   //final Menu selectedMenu;
-  final String? weekDay;
+  final String weekDay;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +35,23 @@ class EditPage extends StatelessWidget {
                 const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
             alignment: Alignment.center,
             child: ListView(
+              padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
-              children: const [
-                TextField(
+              children: [
+                Hero(
+                  tag: weekDay,
+                  child: const Text(
+                    'Segunda-Feira',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -45,47 +59,69 @@ class EditPage extends StatelessWidget {
                     filled: true,
                     fillColor: Color.fromARGB(255, 37, 37, 37),
                     labelText: 'Sopa',
-                    labelStyle: TextStyle(color: Colors.deepOrange),
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrange,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
+                const SizedBox(height: 20),
+                const TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    ),
                     filled: true,
                     fillColor: Color.fromARGB(255, 37, 37, 37),
                     labelText: 'Carne',
-                    labelStyle: TextStyle(color: Colors.deepOrange),
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrange,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
+                const SizedBox(height: 20),
+                const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Color.fromARGB(255, 37, 37, 37),
                     labelText: 'Peixe',
-                    labelStyle: TextStyle(color: Colors.deepOrange),
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrange,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
+                const SizedBox(height: 20),
+                const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Color.fromARGB(255, 37, 37, 37),
                     labelText: 'Vegetariano',
-                    labelStyle: TextStyle(color: Colors.deepOrange),
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrange,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
+                const SizedBox(height: 20),
+                const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Color.fromARGB(255, 37, 37, 37),
                     labelText: 'Sobremesa',
-                    labelStyle: TextStyle(color: Colors.deepOrange),
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrange,
+                      fontFamily: 'AdiNeuePRO',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
               ],

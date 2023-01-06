@@ -100,13 +100,16 @@ class MealCard extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Column(
               children: [
-                Text(
-                  weekDay,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'AdiNeuePRO',
+                Hero(
+                  tag: weekDay,
+                  child: Text(
+                    weekDay,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'AdiNeuePRO',
+                    ),
                   ),
                 ),
                 const SizedBox(

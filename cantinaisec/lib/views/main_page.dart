@@ -20,6 +20,8 @@ class _HomePageState extends State<HomePage> {
     'Sexta-feira'
   ];
 
+  Map<String, dynamic> menu = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,34 +41,72 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () => {
+          setState(() {
+            // refresh the page
+            // get the menu from the server
+            // save the menu in shared preferences
+            // CircularProgressIndicator
+            Future<http.Response> response =
+                http.get(Uri.parse('http://94.61.156.105:8080/menu'));
+            response.then((value) {
+              menu = jsonDecode(value.body);
+              debugPrint(menu.toString());
+              SharedPreferences.getInstance().then((prefs) {
+                prefs.setString('menu', menu.toString());
+              });
+            });
+          })
+        },
         tooltip: 'Refresh',
         child: const Icon(Icons.refresh),
       ),
-      body: Container(
-          padding:
-              const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
-          alignment: Alignment.center,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: const [
-              MealCard(
-                weekDay: "Segunda-Feira",
-              ),
-              MealCard(
-                weekDay: "Terça-Feira",
-              ),
-              MealCard(
-                weekDay: "Quarta-Feira",
-              ),
-              MealCard(
-                weekDay: "Quinta-Feira",
-              ),
-              MealCard(
-                weekDay: "Sexta-Feira",
-              ),
-            ],
-          )),
+      body: FutureBuilder<http.Response>(
+        future: http
+            .get(Uri.parse('http://94.61.156.105:8080/menu'))
+            .timeout(const Duration(seconds: 5)),
+        builder: (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
+          if (snapshot.hasData) {
+            menu = jsonDecode(snapshot.data!.body);
+            return Container(
+                padding: const EdgeInsets.only(
+                    top: 20, bottom: 20, left: 0, right: 0),
+                alignment: Alignment.center,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    MealCard(
+                      weekDay: "Segunda-Feira",
+                      menu: menu,
+                    ),
+                    MealCard(
+                      weekDay: "Terça-Feira",
+                      menu: menu,
+                    ),
+                    MealCard(
+                      weekDay: "Quarta-Feira",
+                      menu: menu,
+                    ),
+                    MealCard(
+                      weekDay: "Quinta-Feira",
+                      menu: menu,
+                    ),
+                    MealCard(
+                      weekDay: "Sexta-Feira",
+                      menu: menu,
+                    ),
+                  ],
+                ));
+          } else if (snapshot.hasError) {
+            return const Center(
+                child: Text(
+              'Erro ao obter o menu',
+              style: TextStyle(color: Colors.white),
+            ));
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
+      ),
       backgroundColor: const Color.fromARGB(255, 17, 17, 17),
     );
   }
@@ -74,9 +114,11 @@ class _HomePageState extends State<HomePage> {
 
 class MealCard extends StatelessWidget {
   // get following info from constructor
-  const MealCard({Key? key, required this.weekDay}) : super(key: key);
+  const MealCard({Key? key, required this.weekDay, required this.menu})
+      : super(key: key);
 
   final String weekDay;
+  final Map<String, dynamic> menu;
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +133,13 @@ class MealCard extends StatelessWidget {
           );
         },
         child: Container(
-            width: screenWidth * 0.9,
+            width: screenWidth * 0.955,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 43, 43, 43),
               borderRadius: BorderRadius.circular(20),
             ),
             padding:
-                const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
+                const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
             alignment: Alignment.topCenter,
             child: Column(
               children: [
@@ -119,9 +161,9 @@ class MealCard extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text(
-                  'Sopa',
-                  style: TextStyle(
+                Text(
+                  menu["MONDAY"]["update"]['soup'],
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontFamily: 'AdiNeuePRO',

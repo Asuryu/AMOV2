@@ -80,6 +80,7 @@ class MealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
@@ -90,7 +91,7 @@ class MealCard extends StatelessWidget {
           );
         },
         child: Container(
-            width: 350,
+            width: screenWidth * 0.9,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 43, 43, 43),
               borderRadius: BorderRadius.circular(20),

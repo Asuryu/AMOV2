@@ -34,7 +34,14 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
                 padding: const EdgeInsets.all(8.0),
-                child: const Text('Cantina ISEC'))
+                child: const Text(
+                  'Cantina ISEC',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'AdiNeuePRO',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ))
           ],
         ),
       ),
@@ -132,7 +139,9 @@ class MealCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay)),
+            MaterialPageRoute(
+                builder: (context) =>
+                    EditPage(weekDay: weekDay, filePath: imagePath)),
           );
         },
         child: Container(
@@ -168,18 +177,24 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          imagePath,
-                          fit: BoxFit.contain,
-                          height: screenHeight * 0.25,
+                    Hero(
+                      tag: imagePath,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.deepOrange,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              imagePath,
+                              fit: BoxFit.contain,
+                              height: screenHeight * 0.25,
+                            ),
+                          ),
                         ),
                       ),
                     ),

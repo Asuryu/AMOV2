@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class EditPage extends StatelessWidget {
   //const EditPage({Key? key, required this.selectedMenu, required this.weekDay})
-  const EditPage({Key? key, required this.weekDay}) : super(key: key);
+  const EditPage({Key? key, required this.weekDay, required this.filePath})
+      : super(key: key);
 
   //final Menu selectedMenu;
   final String weekDay;
+  final String filePath;
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -23,7 +26,13 @@ class EditPage extends StatelessWidget {
               ),
               Container(
                   padding: const EdgeInsets.all(8.0),
-                  child: const Text('Editar Refeição'))
+                  child: const Text('Editar Refeição',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'AdiNeuePRO',
+                        fontWeight: FontWeight.bold,
+                      )))
             ],
           ),
         ),
@@ -49,6 +58,28 @@ class EditPage extends StatelessWidget {
                         fontSize: 20,
                         fontFamily: 'AdiNeuePRO',
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Hero(
+                  tag: filePath,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.deepOrange,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          filePath,
+                          fit: BoxFit.fitWidth,
+                          height: screenHeight * 0.25,
+                        ),
                       ),
                     ),
                   ),

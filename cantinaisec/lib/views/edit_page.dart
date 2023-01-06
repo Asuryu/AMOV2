@@ -40,18 +40,22 @@ class EditPage extends StatelessWidget {
               children: [
                 Hero(
                   tag: weekDay,
-                  child: const Text(
-                    'Segunda-Feira',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
-                      fontWeight: FontWeight.bold,
+                  child: const Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      'Segunda-Feira',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'AdiNeuePRO',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
                 const TextField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -68,6 +72,7 @@ class EditPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const TextField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -84,6 +89,7 @@ class EditPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const TextField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
@@ -98,6 +104,7 @@ class EditPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const TextField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
@@ -112,6 +119,7 @@ class EditPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const TextField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,

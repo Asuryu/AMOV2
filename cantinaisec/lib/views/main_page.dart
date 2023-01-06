@@ -102,13 +102,16 @@ class MealCard extends StatelessWidget {
               children: [
                 Hero(
                   tag: weekDay,
-                  child: Text(
-                    weekDay,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'AdiNeuePRO',
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      weekDay,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'AdiNeuePRO',
+                      ),
                     ),
                   ),
                 ),

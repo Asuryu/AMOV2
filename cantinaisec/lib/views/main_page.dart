@@ -144,199 +144,204 @@ class MealCard extends StatelessWidget {
             padding:
                 const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
             alignment: Alignment.topCenter,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+              shrinkWrap: true,
               children: [
-                Hero(
-                  tag: weekDay,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Text(
-                      weekDay,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'AdiNeuePRO',
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Hero(
+                      tag: weekDay,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          weekDay,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'AdiNeuePRO',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain,
-                      height: screenHeight * 0.25,
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
                         color: Colors.deepOrange,
-                        width: 2,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          imagePath,
+                          fit: BoxFit.contain,
+                          height: screenHeight * 0.25,
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Text(
-                    'Sopa',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(sopa,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'AdiNeuePRO',
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sopa',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'AdiNeuePRO',
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Text(
-                    'Prato de carne',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(pratoDeCarne,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'AdiNeuePRO',
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
+                    Text(sopa,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'AdiNeuePRO',
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Prato de carne',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'AdiNeuePRO',
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Text(
-                    'Prato de peixe',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(pratoDePeixe,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'AdiNeuePRO',
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
+                    Text(pratoDeCarne,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'AdiNeuePRO',
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Prato de peixe',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'AdiNeuePRO',
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Text(
-                    'Prato vegetariano',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(pratoVegetariano,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'AdiNeuePRO',
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
+                    Text(pratoDePeixe,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'AdiNeuePRO',
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Prato vegetariano',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'AdiNeuePRO',
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Text(
-                    'Sobremesa',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'AdiNeuePRO',
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(sopa,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'AdiNeuePRO',
-                    )),
-                const SizedBox(
-                  height: 10,
+                    Text(pratoVegetariano,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'AdiNeuePRO',
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.deepOrange,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sobremesa',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'AdiNeuePRO',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(sopa,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'AdiNeuePRO',
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
               ],
             )),

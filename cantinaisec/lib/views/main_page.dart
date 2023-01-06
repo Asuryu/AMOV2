@@ -220,7 +220,7 @@ class MealCard extends StatelessWidget {
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
@@ -251,7 +251,7 @@ class MealCard extends StatelessWidget {
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
@@ -282,7 +282,7 @@ class MealCard extends StatelessWidget {
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
@@ -315,7 +315,7 @@ class MealCard extends StatelessWidget {
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
@@ -346,7 +346,7 @@ class MealCard extends StatelessWidget {
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                   ],
                 ),

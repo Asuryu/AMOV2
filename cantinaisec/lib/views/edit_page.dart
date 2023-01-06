@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EditPage extends StatefulWidget {
-  const EditPage(
-      {Key? key,
-      required this.weekDay,
-      required this.filePath,
-      required this.menu})
-      : super(key: key);
+  const EditPage({Key? key, required this.weekDay, required this.filePath, required this.menu}) : super(key: key);
 
   final String weekDay;
   final String filePath;
@@ -32,12 +27,11 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
-    _soupController.text = menu["MONDAY"]["update"]['soup'] as String;
-    _meatController.text = menu["MONDAY"]["update"]['meat'] as String;
-    _fishController.text = menu["MONDAY"]["update"]['fish'] as String;
-    _vegetarianController.text =
-        menu["MONDAY"]["update"]['vegetarian'] as String;
-    _dessertController.text = menu["MONDAY"]["update"]['desert'] as String;
+    _soupController.text = menu['soup'] as String;
+    _meatController.text = menu['meat'] as String;
+    _fishController.text = menu['fish'] as String;
+    _vegetarianController.text = menu['vegetarian'] as String;
+    _dessertController.text = menu['desert'] as String;
     return super.initState();
   }
 
@@ -72,8 +66,7 @@ class _EditPageState extends State<EditPage> {
         // set input text color and border to white (background is black)
         // add padding to the text fields
         body: Container(
-            padding:
-                const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
+            padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
             alignment: Alignment.center,
             child: ListView(
               padding: const EdgeInsets.all(8),
@@ -125,8 +118,7 @@ class _EditPageState extends State<EditPage> {
                     var cursorPos = _soupController.selection;
                     _soupController.text = value;
                     if (cursorPos.start > _soupController.text.length) {
-                      cursorPos = TextSelection.fromPosition(
-                          TextPosition(offset: _soupController.text.length));
+                      cursorPos = TextSelection.fromPosition(TextPosition(offset: _soupController.text.length));
                     }
                     _soupController.selection = cursorPos;
                   },
@@ -158,8 +150,7 @@ class _EditPageState extends State<EditPage> {
                     var cursorPos = _meatController.selection;
                     _meatController.text = value;
                     if (cursorPos.start > _meatController.text.length) {
-                      cursorPos = TextSelection.fromPosition(
-                          TextPosition(offset: _meatController.text.length));
+                      cursorPos = TextSelection.fromPosition(TextPosition(offset: _meatController.text.length));
                     }
                     _meatController.selection = cursorPos;
                   },
@@ -191,8 +182,7 @@ class _EditPageState extends State<EditPage> {
                     var cursorPos = _fishController.selection;
                     _fishController.text = value;
                     if (cursorPos.start > _fishController.text.length) {
-                      cursorPos = TextSelection.fromPosition(
-                          TextPosition(offset: _fishController.text.length));
+                      cursorPos = TextSelection.fromPosition(TextPosition(offset: _fishController.text.length));
                     }
                     _fishController.selection = cursorPos;
                   },
@@ -222,8 +212,7 @@ class _EditPageState extends State<EditPage> {
                     var cursorPos = _vegetarianController.selection;
                     _vegetarianController.text = value;
                     if (cursorPos.start > _vegetarianController.text.length) {
-                      cursorPos = TextSelection.fromPosition(TextPosition(
-                          offset: _vegetarianController.text.length));
+                      cursorPos = TextSelection.fromPosition(TextPosition(offset: _vegetarianController.text.length));
                     }
                     _vegetarianController.selection = cursorPos;
                   },
@@ -253,8 +242,7 @@ class _EditPageState extends State<EditPage> {
                     var cursorPos = _dessertController.selection;
                     _dessertController.text = value;
                     if (cursorPos.start > _dessertController.text.length) {
-                      cursorPos = TextSelection.fromPosition(
-                          TextPosition(offset: _dessertController.text.length));
+                      cursorPos = TextSelection.fromPosition(TextPosition(offset: _dessertController.text.length));
                     }
                     _dessertController.selection = cursorPos;
                   },

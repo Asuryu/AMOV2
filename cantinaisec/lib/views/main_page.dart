@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                     MealCard(
                       weekDay: "Terça-Feira",
                       menu: menu,
-                      imagePath: "images/terca*.png",
+                      imagePath: "images/terca.png",
                     ),
                     MealCard(
                       weekDay: "Quarta-Feira",
@@ -147,8 +147,8 @@ class MealCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    EditPage(weekDay: weekDay, filePath: imagePath)),
+                builder: (context) => EditPage(
+                    weekDay: weekDay, filePath: imagePath, menu: menu)),
           );
         },
         child: Container(
@@ -158,7 +158,7 @@ class MealCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             padding:
-                const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
+                const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
             alignment: Alignment.topCenter,
             child: ListView(
               shrinkWrap: true,
@@ -174,7 +174,7 @@ class MealCard extends StatelessWidget {
                           weekDay,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'AdiNeuePRO',
                           ),
@@ -222,7 +222,7 @@ class MealCard extends StatelessWidget {
                         "Sopa",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'AdiNeuePRO',
                         ),
                       ),
@@ -233,7 +233,7 @@ class MealCard extends StatelessWidget {
                     Text(menu["MONDAY"]["update"]['soup'],
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
@@ -253,7 +253,7 @@ class MealCard extends StatelessWidget {
                         'Prato de carne',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'AdiNeuePRO',
                         ),
                       ),
@@ -264,7 +264,7 @@ class MealCard extends StatelessWidget {
                     Text(menu["MONDAY"]["update"]['meat'],
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
@@ -284,7 +284,7 @@ class MealCard extends StatelessWidget {
                         'Prato de peixe',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'AdiNeuePRO',
                         ),
                       ),
@@ -295,7 +295,7 @@ class MealCard extends StatelessWidget {
                     Text(menu["MONDAY"]["update"]['fish'],
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
@@ -315,7 +315,7 @@ class MealCard extends StatelessWidget {
                         'Prato vegetariano',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'AdiNeuePRO',
                         ),
                       ),
@@ -326,7 +326,7 @@ class MealCard extends StatelessWidget {
                     Text(menu["MONDAY"]["update"]['vegetarian'],
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(
@@ -346,7 +346,7 @@ class MealCard extends StatelessWidget {
                         'Sobremesa',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'AdiNeuePRO',
                         ),
                       ),
@@ -357,7 +357,7 @@ class MealCard extends StatelessWidget {
                     Text(menu["MONDAY"]["update"]['soup'],
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'AdiNeuePRO',
                         )),
                     const SizedBox(

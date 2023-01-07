@@ -77,27 +77,32 @@ class _HomePageState extends State<HomePage> {
                   MealCard(
                     weekDay: "Segunda-Feira",
                     menu: menuMonday,
+                    menuComplete: menu["MONDAY"],
                     imagePath: "images/segunda.png",
                   ),
                   MealCard(
                     weekDay: "Terça-Feira",
                     menu: menuTuesday,
+                    menuComplete: menu["TUESDAY"],
                     imagePath: "images/terca.png",
                   ),
                   MealCard(
                     weekDay: "Quarta-Feira",
                     menu: menuWednesday,
-                    imagePath: "images/terca.png",
+                    menuComplete: menu["WEDNESDAY"],
+                    imagePath: "images/quarta.png",
                   ),
                   MealCard(
                     weekDay: "Quinta-Feira",
                     menu: menuThursday,
-                    imagePath: "images/terca.png",
+                    menuComplete: menu["THURSDAY"],
+                    imagePath: "images/quinta.png",
                   ),
                   MealCard(
                     weekDay: "Sexta-Feira",
                     menu: menuFriday,
-                    imagePath: "images/terca.png",
+                    menuComplete: menu["FRIDAY"],
+                    imagePath: "images/sexta.png",
                   ),
                 ]));
           } else if (snapshot.hasError) {
@@ -116,11 +121,12 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MealCard extends StatelessWidget {
-  const MealCard({Key? key, required this.weekDay, required this.imagePath, required this.menu}) : super(key: key);
+  const MealCard({Key? key, required this.weekDay, required this.imagePath, required this.menu, required this.menuComplete}) : super(key: key);
 
   final String weekDay;
   final String imagePath;
   final Map<String, dynamic> menu;
+  final Map<String, dynamic> menuComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -213,12 +219,28 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(utf8.decode(menu['soup'].toString().codeUnits),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'AdiNeuePRO',
-                        )),
+                    if (menuComplete['update'] != null)
+                      if (menuComplete['update']['soup'] != menuComplete['original']['soup'])
+                        Text(utf8.decode(menuComplete['update']['soup'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            ))
+                      else
+                        Text(utf8.decode(menuComplete['original']['soup'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            )),
+                    if (menuComplete['update'] == null)
+                      Text(utf8.decode(menuComplete['original']['soup'].toString().codeUnits),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'AdiNeuePRO',
+                          )),
                     const SizedBox(
                       height: 30,
                     ),
@@ -244,12 +266,28 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(utf8.decode(menu['meat'].toString().codeUnits),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'AdiNeuePRO',
-                        )),
+                    if (menuComplete['update'] != null)
+                      if (menuComplete['update']['meat'] != menuComplete['original']['meat'])
+                        Text(utf8.decode(menuComplete['update']['meat'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            ))
+                      else
+                        Text(utf8.decode(menuComplete['original']['meat'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            )),
+                    if (menuComplete['update'] == null)
+                      Text(utf8.decode(menuComplete['original']['meat'].toString().codeUnits),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'AdiNeuePRO',
+                          )),
                     const SizedBox(
                       height: 30,
                     ),
@@ -275,12 +313,28 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(utf8.decode(menu['fish'].toString().codeUnits),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'AdiNeuePRO',
-                        )),
+                    if (menuComplete['update'] != null)
+                      if (menuComplete['update']['fish'] != menuComplete['original']['fish'])
+                        Text(utf8.decode(menuComplete['update']['fish'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            ))
+                      else
+                        Text(utf8.decode(menuComplete['original']['fish'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            )),
+                    if (menuComplete['update'] == null)
+                      Text(utf8.decode(menuComplete['original']['fish'].toString().codeUnits),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'AdiNeuePRO',
+                          )),
                     const SizedBox(
                       height: 30,
                     ),
@@ -306,14 +360,28 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                        // convert to string utf8
-                        utf8.decode(menu['vegetarian'].toString().codeUnits),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'AdiNeuePRO',
-                        )),
+                    if (menuComplete['update'] != null)
+                      if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian'])
+                        Text(utf8.decode(menuComplete['update']['vegetarian'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            ))
+                      else
+                        Text(utf8.decode(menuComplete['original']['vegetarian'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            )),
+                    if (menuComplete['update'] == null)
+                      Text(utf8.decode(menuComplete['original']['vegetarian'].toString().codeUnits),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'AdiNeuePRO',
+                          )),
                     const SizedBox(
                       height: 30,
                     ),
@@ -339,12 +407,28 @@ class MealCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(utf8.decode(menu['desert'].toString().codeUnits),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'AdiNeuePRO',
-                        )),
+                    if (menuComplete['update'] != null)
+                      if (menuComplete['update']['desert'] != menuComplete['original']['desert'])
+                        Text(utf8.decode(menuComplete['update']['desert'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            ))
+                      else
+                        Text(utf8.decode(menuComplete['original']['desert'].toString().codeUnits),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'AdiNeuePRO',
+                            )),
+                    if (menuComplete['update'] == null)
+                      Text(utf8.decode(menuComplete['original']['desert'].toString().codeUnits),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'AdiNeuePRO',
+                          )),
                     const SizedBox(
                       height: 30,
                     ),

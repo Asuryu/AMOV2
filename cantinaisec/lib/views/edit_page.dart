@@ -75,11 +75,11 @@ class _EditPageState extends State<EditPage> {
               children: [
                 Hero(
                   tag: weekDay,
-                  child: const Material(
+                  child: Material(
                     color: Colors.transparent,
                     child: Text(
-                      'Segunda-Feira',
-                      style: TextStyle(
+                      weekDay,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontFamily: 'AdiNeuePRO',

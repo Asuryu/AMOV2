@@ -153,7 +153,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['soup'] != menuComplete['original']['soup'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         'Sopa Original: ${utf8.decode(menuComplete['original']['soup'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -165,7 +165,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['soup'] != menuComplete['original']['soup']) const SizedBox(height: 15),
+                  if (menuComplete['update']['soup'] != menuComplete['original']['soup']) const SizedBox(height: 30),
                 TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: _meatController,
@@ -203,7 +203,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['meat'] != menuComplete['original']['meat'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         'Prato de Carne Original: ${utf8.decode(menuComplete['original']['meat'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -215,7 +215,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['meat'] != menuComplete['original']['meat']) const SizedBox(height: 15),
+                  if (menuComplete['update']['meat'] != menuComplete['original']['meat']) const SizedBox(height: 30),
                 TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: _fishController,
@@ -251,7 +251,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['fish'] != menuComplete['original']['fish'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         'Prato de Peixe Original: ${utf8.decode(menuComplete['original']['fish'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -263,7 +263,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['fish'] != menuComplete['original']['fish']) const SizedBox(height: 15),
+                  if (menuComplete['update']['fish'] != menuComplete['original']['fish']) const SizedBox(height: 30),
                 TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: _vegetarianController,
@@ -302,7 +302,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         'Prato de Vegetariano Original: ${utf8.decode(menuComplete['original']['vegetarian'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -314,7 +314,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian']) const SizedBox(height: 15),
+                  if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian']) const SizedBox(height: 30),
                 TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: _dessertController,
@@ -350,7 +350,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['desert'] != menuComplete['original']['desert'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 0),
                       child: Text(
                         'Sobremesa Original: ${utf8.decode(menuComplete['original']['desert'].toString().codeUnits)}',
                         style: const TextStyle(

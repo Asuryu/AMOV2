@@ -131,7 +131,7 @@ class _EditPageState extends State<EditPage> {
                     ),
                     filled: true,
                     fillColor: const Color.fromARGB(255, 37, 37, 37),
-                    hintText: menuComplete['original']['soup'],
+                    hintText: utf8.decode(menuComplete['original']['soup'].toString().codeUnits),
                     hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
@@ -181,7 +181,7 @@ class _EditPageState extends State<EditPage> {
                     ),
                     filled: true,
                     fillColor: const Color.fromARGB(255, 37, 37, 37),
-                    hintText: menuComplete['original']['meat'],
+                    hintText: utf8.decode(menuComplete['original']['meat'].toString().codeUnits),
                     hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
@@ -229,7 +229,7 @@ class _EditPageState extends State<EditPage> {
                     border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: const Color.fromARGB(255, 37, 37, 37),
-                    hintText: menuComplete['original']['fish'],
+                    hintText: utf8.decode(menuComplete['original']['fish'].toString().codeUnits),
                     hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
@@ -277,7 +277,7 @@ class _EditPageState extends State<EditPage> {
                     border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: const Color.fromARGB(255, 37, 37, 37),
-                    hintText: menuComplete['original']['vegetarian'],
+                    hintText: utf8.decode(menuComplete['original']['vegetarian'].toString().codeUnits),
                     hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
@@ -328,7 +328,7 @@ class _EditPageState extends State<EditPage> {
                     border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: const Color.fromARGB(255, 37, 37, 37),
-                    hintText: menuComplete['original']['desert'],
+                    hintText: utf8.decode(menuComplete['original']['desert'].toString().codeUnits),
                     hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',

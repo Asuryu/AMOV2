@@ -125,20 +125,20 @@ class _EditPageState extends State<EditPage> {
                     }
                     _soupController.selection = cursorPos;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
                     ),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 37, 37, 37),
-                    hintText: 'Sopa',
-                    hintStyle: TextStyle(
+                    fillColor: const Color.fromARGB(255, 37, 37, 37),
+                    hintText: menuComplete['original']['soup'],
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
                     ),
                     labelText: 'Sopa',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
@@ -175,20 +175,20 @@ class _EditPageState extends State<EditPage> {
                     }
                     _meatController.selection = cursorPos;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
                     ),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 37, 37, 37),
-                    hintText: 'Carne',
-                    hintStyle: TextStyle(
+                    fillColor: const Color.fromARGB(255, 37, 37, 37),
+                    hintText: menuComplete['original']['meat'],
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
                     ),
                     labelText: 'Carne',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
@@ -225,18 +225,18 @@ class _EditPageState extends State<EditPage> {
                     }
                     _fishController.selection = cursorPos;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 37, 37, 37),
-                    hintText: 'Peixe',
-                    hintStyle: TextStyle(
+                    fillColor: const Color.fromARGB(255, 37, 37, 37),
+                    hintText: menuComplete['original']['fish'],
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
                     ),
                     labelText: 'Peixe',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
@@ -273,18 +273,18 @@ class _EditPageState extends State<EditPage> {
                     }
                     _vegetarianController.selection = cursorPos;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 37, 37, 37),
-                    hintText: 'Vegetariano',
-                    hintStyle: TextStyle(
+                    fillColor: const Color.fromARGB(255, 37, 37, 37),
+                    hintText: menuComplete['original']['vegetarian'],
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
                     ),
                     labelText: 'Vegetariano',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
@@ -324,18 +324,18 @@ class _EditPageState extends State<EditPage> {
                     }
                     _dessertController.selection = cursorPos;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Color.fromARGB(255, 37, 37, 37),
-                    hintText: 'Sobremesa',
-                    hintStyle: TextStyle(
+                    fillColor: const Color.fromARGB(255, 37, 37, 37),
+                    hintText: menuComplete['original']['desert'],
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,
                     ),
                     labelText: 'Sobremesa',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'AdiNeuePRO',
                       fontWeight: FontWeight.normal,

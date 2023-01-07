@@ -1,5 +1,7 @@
+import 'package:cantinaisec/views/main_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert' show jsonDecode, utf8;
+import 'package:http/http.dart' as http;
+import 'dart:convert' show jsonEncode, utf8;
 
 class EditPage extends StatefulWidget {
   const EditPage({Key? key, required this.weekDay, required this.filePath, required this.menu, required this.menuComplete}) : super(key: key);
@@ -363,7 +365,71 @@ class _EditPageState extends State<EditPage> {
             )),
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 252, 158, 70),
-          onPressed: () => {Navigator.pop(context)},
+          onPressed: () => {
+            setState(() {
+              // refresh the page
+              // get the menu from the server
+              // save the menu in shared preferences
+              // CircularProgressIndicator
+              String diaDaSemana;
+              if (weekDay == "Segunda-Feira") {
+                diaDaSemana = "MONDAY";
+              } else if (weekDay == "Terça-Feira") {
+                diaDaSemana = "TUESDAY";
+              } else if (weekDay == "Quarta-Feira") {
+                diaDaSemana = "WEDNESDAY";
+              } else if (weekDay == "Quinta-Feira") {
+                diaDaSemana = "THURSDAY";
+              } else if (weekDay == "Sexta-Feira") {
+                diaDaSemana = "FRIDAY";
+              } else {
+                diaDaSemana = "";
+              }
+
+              // set content-type to application/json; charset=UTF-8
+              Future<http.Response> response = http.post(Uri.parse('http://94.61.156.105:8080/menu'),
+                  body: jsonEncode({
+                    'weekDay': diaDaSemana,
+                    'soup': _soupController.text,
+                    'fish': _fishController.text,
+                    'meat': _meatController.text,
+                    'vegetarian': _vegetarianController.text,
+                    'desert': _dessertController.text,
+                    'img': ""
+                  }),
+                  headers: {'Content-Type': 'application/json; charset=UTF-8'});
+              // check if the menu was updated
+              // if it was, show a snackbar
+              // if it wasn't, show a snackbar
+              response.then((value) => {
+                    if (value.statusCode == 201)
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Menu atualizado com sucesso!'),
+                          backgroundColor: Color.fromARGB(255, 146, 243, 82),
+                        )),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const HomePage()),
+                        )
+                      }
+                    else if (value.statusCode == 403)
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Headers do pedido inválidos'),
+                          backgroundColor: Color.fromARGB(255, 252, 158, 70),
+                        ))
+                      }
+                    else
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Ocorreu um erro ao atualizar o menu!'),
+                          backgroundColor: Color.fromARGB(255, 252, 158, 70),
+                        ))
+                      }
+                  });
+            })
+          },
           tooltip: 'Update',
           child: const Icon(Icons.save),
         ),

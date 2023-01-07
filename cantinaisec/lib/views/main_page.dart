@@ -138,7 +138,7 @@ class MealCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay, filePath: imagePath, menu: menu)),
+            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay, filePath: imagePath, menu: menu, menuComplete: menuComplete)),
           );
         },
         child: Container(

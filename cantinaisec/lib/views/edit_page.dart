@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:convert' show jsonDecode, utf8;
 
 class EditPage extends StatefulWidget {
   const EditPage({Key? key, required this.weekDay, required this.filePath, required this.menu}) : super(key: key);
@@ -27,11 +28,11 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
-    _soupController.text = menu['soup'] as String;
-    _meatController.text = menu['meat'] as String;
-    _fishController.text = menu['fish'] as String;
-    _vegetarianController.text = menu['vegetarian'] as String;
-    _dessertController.text = menu['desert'] as String;
+    _soupController.text = utf8.decode(menu['soup'].toString().codeUnits);
+    _meatController.text = utf8.decode(menu['meat'].toString().codeUnits);
+    _fishController.text = utf8.decode(menu['fish'].toString().codeUnits);
+    _vegetarianController.text = utf8.decode(menu['vegetarian'].toString().codeUnits);
+    _dessertController.text = utf8.decode(menu['desert'].toString().codeUnits);
     return super.initState();
   }
 

@@ -105,10 +105,22 @@ class _EditPageState extends State<EditPage> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          filePath,
-                          fit: BoxFit.fitWidth,
-                          height: screenHeight * 0.25,
+                        child: Builder(
+                          builder: (BuildContext context) {
+                            if (filePath == 'images/emptyMenu.png') {
+                              return Image.asset(
+                                filePath,
+                                fit: BoxFit.contain,
+                                height: screenHeight * 0.25,
+                              );
+                            } else {
+                              return Image.network(
+                                filePath,
+                                fit: BoxFit.contain,
+                                height: screenHeight * 0.25,
+                              );
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -148,12 +160,14 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['soup'] != menuComplete['original']['soup']) const SizedBox(height: 10) else const SizedBox(height: 20),
+                  if (menuComplete['update']['soup'] != menuComplete['original']['soup']) const SizedBox(height: 10) else const SizedBox(height: 20)
+                else
+                  const SizedBox(height: 20),
                 if (menuComplete['update'] != null)
                   if (menuComplete['update']['soup'] != menuComplete['original']['soup'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 5),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Text(
                         'Sopa Original: ${utf8.decode(menuComplete['original']['soup'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -198,12 +212,14 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['meat'] != menuComplete['original']['meat']) const SizedBox(height: 10) else const SizedBox(height: 20),
+                  if (menuComplete['update']['meat'] != menuComplete['original']['meat']) const SizedBox(height: 10) else const SizedBox(height: 20)
+                else
+                  const SizedBox(height: 20),
                 if (menuComplete['update'] != null)
                   if (menuComplete['update']['meat'] != menuComplete['original']['meat'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 5),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Text(
                         'Prato de Carne Original: ${utf8.decode(menuComplete['original']['meat'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -246,12 +262,14 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['fish'] != menuComplete['original']['fish']) const SizedBox(height: 10) else const SizedBox(height: 20),
+                  if (menuComplete['update']['fish'] != menuComplete['original']['fish']) const SizedBox(height: 10) else const SizedBox(height: 20)
+                else
+                  const SizedBox(height: 20),
                 if (menuComplete['update'] != null)
                   if (menuComplete['update']['fish'] != menuComplete['original']['fish'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 5),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Text(
                         'Prato de Peixe Original: ${utf8.decode(menuComplete['original']['fish'].toString().codeUnits)}',
                         style: const TextStyle(
@@ -294,10 +312,9 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian'])
-                    const SizedBox(height: 10)
-                  else
-                    const SizedBox(height: 20),
+                  if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian']) const SizedBox(height: 10) else const SizedBox(height: 20)
+                else
+                  const SizedBox(height: 20),
                 if (menuComplete['update'] != null)
                   if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian'])
                     Container(
@@ -345,12 +362,14 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 if (menuComplete['update'] != null)
-                  if (menuComplete['update']['desert'] != menuComplete['original']['desert']) const SizedBox(height: 10) else const SizedBox(height: 20),
+                  if (menuComplete['update']['desert'] != menuComplete['original']['desert']) const SizedBox(height: 10) else const SizedBox(height: 20)
+                else
+                  const SizedBox(height: 20),
                 if (menuComplete['update'] != null)
                   if (menuComplete['update']['desert'] != menuComplete['original']['desert'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 0),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Text(
                         'Sobremesa Original: ${utf8.decode(menuComplete['original']['desert'].toString().codeUnits)}',
                         style: const TextStyle(

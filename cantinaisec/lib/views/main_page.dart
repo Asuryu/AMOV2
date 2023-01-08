@@ -71,39 +71,92 @@ class _HomePageState extends State<HomePage> {
             var menuWednesday = menu["WEDNESDAY"]["update"] ?? menu["WEDNESDAY"]["original"];
             var menuThursday = menu["THURSDAY"]["update"] ?? menu["THURSDAY"]["original"];
             var menuFriday = menu["FRIDAY"]["update"] ?? menu["FRIDAY"]["original"];
+
+            String imageMonday;
+            String imageTuesday;
+            String imageWednesday;
+            String imageThursday;
+            String imageFriday;
+
+            imageMonday = menu["MONDAY"]["update"] != null
+                ? menu["MONDAY"]["update"]["img"] != ''
+                    ? "http://94.61.156.105:8080/images/${menu["MONDAY"]["update"]["img"]}"
+                    : "images/emptyMenu.png"
+                : "images/emptyMenu.png";
+
+            debugPrint(imageMonday);
+
+            if (menu["TUESDAY"]["update"] != null) {
+              if (menu["TUESDAY"]["update"]["img"] != '') {
+                imageTuesday = "http://94.61.156.105:8080/images/${menu["TUESDAY"]["update"]["img"]}";
+              } else {
+                imageTuesday = "images/emptyMenu.png";
+              }
+            } else {
+              imageTuesday = "images/emptyMenu.png";
+            }
+            if (menu["WEDNESDAY"]["update"] != null) {
+              if (menu["WEDNESDAY"]["update"]["img"] != '') {
+                imageWednesday = "http://94.61.156.105:8080/images/${menu["WEDNESDAY"]["update"]["img"]}";
+              } else {
+                imageWednesday = "images/emptyMenu.png";
+              }
+            } else {
+              imageWednesday = "images/emptyMenu.png";
+            }
+            if (menu["THURSDAY"]["update"] != null) {
+              if (menu["THURSDAY"]["update"]["img"] != '') {
+                imageThursday = "http://94.61.156.105:8080/images/${menu["THURSDAY"]["update"]["img"]}";
+              } else {
+                imageThursday = "images/emptyMenu.png";
+              }
+            } else {
+              imageThursday = "images/emptyMenu.png";
+            }
+            if (menu["FRIDAY"]["update"] != null) {
+              if (menu["FRIDAY"]["update"]["img"] != '') {
+                imageFriday = "http://94.61.156.105:8080/images/${menu["FRIDAY"]["update"]["img"]}";
+              } else {
+                imageFriday = "images/emptyMenu.png";
+              }
+            } else {
+              imageFriday = "images/emptyMenu.png";
+            }
+
             return Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
                 alignment: Alignment.center,
                 child: ListView(scrollDirection: Axis.horizontal, children: [
+                  // Create Meal Cards according to the exact day of the week
                   MealCard(
                     weekDay: "Segunda-Feira",
                     menu: menuMonday,
                     menuComplete: menu["MONDAY"],
-                    imagePath: "images/segunda.png",
+                    imagePath: imageMonday,
                   ),
                   MealCard(
                     weekDay: "Terça-Feira",
                     menu: menuTuesday,
                     menuComplete: menu["TUESDAY"],
-                    imagePath: "images/terca.png",
+                    imagePath: imageTuesday,
                   ),
                   MealCard(
                     weekDay: "Quarta-Feira",
                     menu: menuWednesday,
                     menuComplete: menu["WEDNESDAY"],
-                    imagePath: "images/quarta.png",
+                    imagePath: imageWednesday,
                   ),
                   MealCard(
                     weekDay: "Quinta-Feira",
                     menu: menuThursday,
                     menuComplete: menu["THURSDAY"],
-                    imagePath: "images/quinta.png",
+                    imagePath: imageThursday,
                   ),
                   MealCard(
                     weekDay: "Sexta-Feira",
                     menu: menuFriday,
                     menuComplete: menu["FRIDAY"],
-                    imagePath: "images/sexta.png",
+                    imagePath: imageFriday,
                   ),
                 ]));
           } else if (snapshot.hasError) {
@@ -186,18 +239,28 @@ class MealCard extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              imagePath,
-                              fit: BoxFit.contain,
-                              height: screenHeight * 0.25,
+                            child: Builder(
+                              builder: (BuildContext context) {
+                                if (imagePath == 'images/emptyMenu.png') {
+                                  return Image.asset(
+                                    imagePath,
+                                    fit: BoxFit.contain,
+                                    height: screenHeight * 0.25,
+                                  );
+                                } else {
+                                  return Image.network(
+                                    imagePath,
+                                    fit: BoxFit.contain,
+                                    height: screenHeight * 0.25,
+                                  );
+                                }
+                              },
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
                       decoration: const BoxDecoration(
@@ -440,4 +503,10 @@ class MealCard extends StatelessWidget {
       ),
     );
   }
+}
+
+int getWeekDay() {
+  final today = DateTime.now();
+
+  return today.weekday;
 }

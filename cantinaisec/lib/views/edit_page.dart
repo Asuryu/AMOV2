@@ -319,7 +319,7 @@ class _EditPageState extends State<EditPage> {
                   if (menuComplete['update']['vegetarian'] != menuComplete['original']['vegetarian'])
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         'Prato de Vegetariano Original: ${utf8.decode(menuComplete['original']['vegetarian'].toString().codeUnits)}',
                         style: const TextStyle(

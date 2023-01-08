@@ -1,61 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "chickenInIzek-1-16.png",
+      "filename" : "chickenInIzekNoBackground-16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "chickenInIzek-1-32.png",
+      "filename" : "chickenInIzekNoBackground-32.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "chickenInIzek-1-32.png",
+      "filename" : "chickenInIzekNoBackground-32.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "chickenInIzek-1-64.png",
+      "filename" : "chickenInIzekNoBackground-64.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "chickenInIzek-1-128.png",
+      "filename" : "chickenInIzekNoBackground-128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "chickenInIzek-1-256.png",
+      "filename" : "chickenInIzekNoBackground-256.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "chickenInIzek-1-256.png",
+      "filename" : "chickenInIzekNoBackground-256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "chickenInIzek-1-512.png",
+      "filename" : "chickenInIzekNoBackground-512.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "chickenInIzek-1-512.png",
+      "filename" : "chickenInIzekNoBackground-512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "chickenInIzek-1-1024.png",
+      "filename" : "chickenInIzekNoBackground-1024.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

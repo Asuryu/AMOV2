@@ -390,10 +390,6 @@ class _EditPageState extends State<EditPage> {
           backgroundColor: const Color.fromARGB(255, 252, 158, 70),
           onPressed: () => {
             setState(() {
-              // refresh the page
-              // get the menu from the server
-              // save the menu in shared preferences
-              // CircularProgressIndicator
               String diaDaSemana;
               if (weekDay == "Segunda-Feira") {
                 diaDaSemana = "MONDAY";

@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // get menu from shared-preferences
     SharedPreferences.getInstance().then((prefs) {
-      // Olá Rafael e Tânia :)
+      //  Olá Rafael e Tânia :)
       if (prefs.getString('weeklyMenu') != null) {
         setState(() {
           menu = jsonDecode(prefs.getString('weeklyMenu')!);

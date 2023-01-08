@@ -1,7 +1,8 @@
 import 'package:cantinaisec/views/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' show jsonEncode, utf8;
+import 'dart:convert' show jsonEncode, utf8, base64Encode;
+import 'dart:io';
 
 class EditPage extends StatefulWidget {
   const EditPage({Key? key, required this.tag, required this.weekDay, required this.filePath, required this.menu, required this.menuComplete})
@@ -388,7 +389,15 @@ class _EditPageState extends State<EditPage> {
             )),
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 252, 158, 70),
-          onPressed: () => {
+          onPressed: () async {
+            String base64Img = "";
+
+            if (filePath != "images/emptyMenu.png") {
+              var response = await http.get(Uri.parse(filePath));
+              var bytes = response.bodyBytes;
+              base64Img = base64Encode(bytes);
+            }
+
             setState(() {
               String diaDaSemana;
               if (weekDay == "Segunda-Feira") {
@@ -413,12 +422,9 @@ class _EditPageState extends State<EditPage> {
                     'meat': _meatController.text,
                     'vegetarian': _vegetarianController.text,
                     'desert': _dessertController.text,
-                    'img': ""
+                    'img': base64Img,
                   }),
                   headers: {'Content-Type': 'application/json; charset=UTF-8'});
-              // check if the menu was updated
-              // if it was, show a snackbar
-              // if it wasn't, show a snackbar
               response.then((value) => {
                     if (value.statusCode == 201)
                       {
@@ -446,7 +452,7 @@ class _EditPageState extends State<EditPage> {
                         ))
                       }
                   });
-            })
+            });
           },
           tooltip: 'Update',
           child: const Icon(Icons.save),

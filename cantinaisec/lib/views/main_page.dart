@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +30,6 @@ class _HomePageState extends State<HomePage> {
         });
       } else {
         setState(() {
-          debugPrint('No menu available');
           menu = {};
         });
       }
@@ -70,6 +71,7 @@ class _HomePageState extends State<HomePage> {
             // get the menu from the server
             // save the menu in shared preferences
             // CircularProgressIndicator
+            debugPrint('refreshing');
             Future<http.Response> response = http.get(Uri.parse('http://94.61.156.105:8080/menu'));
             response.then((value) {
               SharedPreferences.getInstance().then((prefs) {
@@ -84,6 +86,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Builder(
         builder: (BuildContext context) {
+          debugPrint('menu:${menu.isEmpty}');
           if (menu.isEmpty) {
             return const Center(
               child: Text(
@@ -97,137 +100,119 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            return FutureBuilder<http.Response>(
-                future:
-                    http.get(Uri.parse('http://94.61.156.105:8080/menu'), headers: {"Content-Type": "application/json"}).timeout(const Duration(seconds: 5)),
-                builder: (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
-                  if (snapshot.hasData) {
-                    menu = jsonDecode(snapshot.data!.body);
+            return Builder(builder: (BuildContext context) {
+              var menuMonday = menu["MONDAY"]["update"] ?? menu["MONDAY"]["original"];
+              var menuTuesday = menu["TUESDAY"]["update"] ?? menu["TUESDAY"]["original"];
+              var menuWednesday = menu["WEDNESDAY"]["update"] ?? menu["WEDNESDAY"]["original"];
+              var menuThursday = menu["THURSDAY"]["update"] ?? menu["THURSDAY"]["original"];
+              var menuFriday = menu["FRIDAY"]["update"] ?? menu["FRIDAY"]["original"];
 
-                    SharedPreferences.getInstance().then((prefs) {
-                      prefs.setString('weeklyMenu', snapshot.data!.body);
-                    });
+              String imageMonday;
+              String imageTuesday;
+              String imageWednesday;
+              String imageThursday;
+              String imageFriday;
 
-                    var menuMonday = menu["MONDAY"]["update"] ?? menu["MONDAY"]["original"];
-                    var menuTuesday = menu["TUESDAY"]["update"] ?? menu["TUESDAY"]["original"];
-                    var menuWednesday = menu["WEDNESDAY"]["update"] ?? menu["WEDNESDAY"]["original"];
-                    var menuThursday = menu["THURSDAY"]["update"] ?? menu["THURSDAY"]["original"];
-                    var menuFriday = menu["FRIDAY"]["update"] ?? menu["FRIDAY"]["original"];
+              imageMonday = menu["MONDAY"]["update"] != null
+                  ? menu["MONDAY"]["update"]["img"] != ''
+                      ? "http://94.61.156.105:8080/images/${menu["MONDAY"]["update"]["img"]}"
+                      : "images/emptyMenu.png"
+                  : "images/emptyMenu.png";
 
-                    String imageMonday;
-                    String imageTuesday;
-                    String imageWednesday;
-                    String imageThursday;
-                    String imageFriday;
+              imageTuesday = menu["TUESDAY"]["update"] != null
+                  ? menu["TUESDAY"]["update"]["img"] != ''
+                      ? "http://94.61.156.105:8080/images/${menu["TUESDAY"]["update"]["img"]}"
+                      : "images/emptyMenu.png"
+                  : "images/emptyMenu.png";
 
-                    imageMonday = menu["MONDAY"]["update"] != null
-                        ? menu["MONDAY"]["update"]["img"] != ''
-                            ? "http://94.61.156.105:8080/images/${menu["MONDAY"]["update"]["img"]}"
-                            : "images/emptyMenu.png"
-                        : "images/emptyMenu.png";
+              imageWednesday = menu["WEDNESDAY"]["update"] != null
+                  ? menu["WEDNESDAY"]["update"]["img"] != ''
+                      ? "http://94.61.156.105:8080/images/${menu["WEDNESDAY"]["update"]["img"]}"
+                      : "images/emptyMenu.png"
+                  : "images/emptyMenu.png";
 
-                    imageTuesday = menu["TUESDAY"]["update"] != null
-                        ? menu["TUESDAY"]["update"]["img"] != ''
-                            ? "http://94.61.156.105:8080/images/${menu["TUESDAY"]["update"]["img"]}"
-                            : "images/emptyMenu.png"
-                        : "images/emptyMenu.png";
+              imageThursday = menu["THURSDAY"]["update"] != null
+                  ? menu["THURSDAY"]["update"]["img"] != ''
+                      ? "http://94.61.156.105:8080/images/${menu["THURSDAY"]["update"]["img"]}"
+                      : "images/emptyMenu.png"
+                  : "images/emptyMenu.png";
 
-                    imageWednesday = menu["WEDNESDAY"]["update"] != null
-                        ? menu["WEDNESDAY"]["update"]["img"] != ''
-                            ? "http://94.61.156.105:8080/images/${menu["WEDNESDAY"]["update"]["img"]}"
-                            : "images/emptyMenu.png"
-                        : "images/emptyMenu.png";
+              imageFriday = menu["FRIDAY"]["update"] != null
+                  ? menu["FRIDAY"]["update"]["img"] != ''
+                      ? "http://94.61.156.105:8080/images/${menu["FRIDAY"]["update"]["img"]}"
+                      : "images/emptyMenu.png"
+                  : "images/emptyMenu.png";
 
-                    imageThursday = menu["THURSDAY"]["update"] != null
-                        ? menu["THURSDAY"]["update"]["img"] != ''
-                            ? "http://94.61.156.105:8080/images/${menu["THURSDAY"]["update"]["img"]}"
-                            : "images/emptyMenu.png"
-                        : "images/emptyMenu.png";
-
-                    imageFriday = menu["FRIDAY"]["update"] != null
-                        ? menu["FRIDAY"]["update"]["img"] != ''
-                            ? "http://94.61.156.105:8080/images/${menu["FRIDAY"]["update"]["img"]}"
-                            : "images/emptyMenu.png"
-                        : "images/emptyMenu.png";
-
-                    return Container(
-                        padding: const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
-                        alignment: Alignment.center,
-                        child: ListView(scrollDirection: Axis.horizontal, children: [
-                          for (var i = getWeekDay(); i <= 4; i++)
-                            MealCard(
-                              tag: i.toString(),
-                              weekDay: days[i],
-                              imagePath: i == 0
-                                  ? imageMonday
-                                  : i == 1
-                                      ? imageTuesday
-                                      : i == 2
-                                          ? imageWednesday
-                                          : i == 3
-                                              ? imageThursday
-                                              : imageFriday,
-                              menu: i == 0
-                                  ? menuMonday
-                                  : i == 1
-                                      ? menuTuesday
-                                      : i == 2
-                                          ? menuWednesday
-                                          : i == 3
-                                              ? menuThursday
-                                              : menuFriday,
-                              menuComplete: i == 0
-                                  ? menu["MONDAY"]
-                                  : i == 1
-                                      ? menu["TUESDAY"]
-                                      : i == 2
-                                          ? menu["WEDNESDAY"]
-                                          : i == 3
-                                              ? menu["THURSDAY"]
-                                              : menu["FRIDAY"],
-                            ),
-                          for (int i = 0; i < getWeekDay(); i++)
-                            MealCard(
-                              tag: i.toString(),
-                              weekDay: days[i],
-                              imagePath: i == 0
-                                  ? imageMonday
-                                  : i == 1
-                                      ? imageTuesday
-                                      : i == 2
-                                          ? imageWednesday
-                                          : i == 3
-                                              ? imageThursday
-                                              : imageFriday,
-                              menu: i == 0
-                                  ? menuMonday
-                                  : i == 1
-                                      ? menuTuesday
-                                      : i == 2
-                                          ? menuWednesday
-                                          : i == 3
-                                              ? menuThursday
-                                              : menuFriday,
-                              menuComplete: i == 0
-                                  ? menu["MONDAY"]
-                                  : i == 1
-                                      ? menu["TUESDAY"]
-                                      : i == 2
-                                          ? menu["WEDNESDAY"]
-                                          : i == 3
-                                              ? menu["THURSDAY"]
-                                              : menu["FRIDAY"],
-                            )
-                        ]));
-                  } else if (snapshot.hasError) {
-                    return const Center(
-                        child: Text(
-                      'Erro ao obter o menu',
-                      style: TextStyle(color: Colors.white),
-                    ));
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                });
+              return Container(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
+                  alignment: Alignment.center,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    for (var i = getWeekDay(); i <= 4; i++)
+                      MealCard(
+                        tag: i.toString(),
+                        weekDay: days[i],
+                        imagePath: i == 0
+                            ? imageMonday
+                            : i == 1
+                                ? imageTuesday
+                                : i == 2
+                                    ? imageWednesday
+                                    : i == 3
+                                        ? imageThursday
+                                        : imageFriday,
+                        menu: i == 0
+                            ? menuMonday
+                            : i == 1
+                                ? menuTuesday
+                                : i == 2
+                                    ? menuWednesday
+                                    : i == 3
+                                        ? menuThursday
+                                        : menuFriday,
+                        menuComplete: i == 0
+                            ? menu["MONDAY"]
+                            : i == 1
+                                ? menu["TUESDAY"]
+                                : i == 2
+                                    ? menu["WEDNESDAY"]
+                                    : i == 3
+                                        ? menu["THURSDAY"]
+                                        : menu["FRIDAY"],
+                      ),
+                    for (int i = 0; i < getWeekDay(); i++)
+                      MealCard(
+                        tag: i.toString(),
+                        weekDay: days[i],
+                        imagePath: i == 0
+                            ? imageMonday
+                            : i == 1
+                                ? imageTuesday
+                                : i == 2
+                                    ? imageWednesday
+                                    : i == 3
+                                        ? imageThursday
+                                        : imageFriday,
+                        menu: i == 0
+                            ? menuMonday
+                            : i == 1
+                                ? menuTuesday
+                                : i == 2
+                                    ? menuWednesday
+                                    : i == 3
+                                        ? menuThursday
+                                        : menuFriday,
+                        menuComplete: i == 0
+                            ? menu["MONDAY"]
+                            : i == 1
+                                ? menu["TUESDAY"]
+                                : i == 2
+                                    ? menu["WEDNESDAY"]
+                                    : i == 3
+                                        ? menu["THURSDAY"]
+                                        : menu["FRIDAY"],
+                      )
+                  ]));
+            });
           }
         },
       ),

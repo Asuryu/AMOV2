@@ -4,21 +4,24 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' show jsonEncode, utf8;
 
 class EditPage extends StatefulWidget {
-  const EditPage({Key? key, required this.weekDay, required this.filePath, required this.menu, required this.menuComplete}) : super(key: key);
+  const EditPage({Key? key, required this.tag, required this.weekDay, required this.filePath, required this.menu, required this.menuComplete})
+      : super(key: key);
 
+  final String tag;
   final String weekDay;
   final String filePath;
   final Map<String, dynamic> menu;
   final Map<String, dynamic> menuComplete;
 
   @override
-  _EditPageState createState() => _EditPageState(weekDay, filePath, menu, menuComplete);
+  _EditPageState createState() => _EditPageState(tag, weekDay, filePath, menu, menuComplete);
 }
 
 class _EditPageState extends State<EditPage> {
-  _EditPageState(this.weekDay, this.filePath, this.menu, this.menuComplete);
+  _EditPageState(this.tag, this.weekDay, this.filePath, this.menu, this.menuComplete);
 
   //final Menu selectedMenu;
+  final String tag;
   final String weekDay;
   final String filePath;
   final Map<String, dynamic> menu;
@@ -94,7 +97,7 @@ class _EditPageState extends State<EditPage> {
                 ),
                 const SizedBox(height: 20),
                 Hero(
-                  tag: filePath,
+                  tag: tag,
                   child: Material(
                     color: Colors.transparent,
                     child: Container(
@@ -380,6 +383,7 @@ class _EditPageState extends State<EditPage> {
                         ),
                       ),
                     ),
+                const SizedBox(height: 50),
               ],
             )),
         floatingActionButton: FloatingActionButton(
@@ -405,7 +409,6 @@ class _EditPageState extends State<EditPage> {
                 diaDaSemana = "";
               }
 
-              // set content-type to application/json; charset=UTF-8
               Future<http.Response> response = http.post(Uri.parse('http://94.61.156.105:8080/menu'),
                   body: jsonEncode({
                     'weekDay': diaDaSemana,
@@ -425,9 +428,9 @@ class _EditPageState extends State<EditPage> {
                       {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Menu atualizado com sucesso!'),
-                          backgroundColor: Color.fromARGB(255, 146, 243, 82),
+                          backgroundColor: Color.fromARGB(255, 96, 189, 53),
                         )),
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => const HomePage()),
                         )

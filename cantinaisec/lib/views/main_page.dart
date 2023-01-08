@@ -12,7 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> days = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
+  List<String> days = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'];
+  List<String> daysKeys = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'];
 
   Map<String, dynamic> menu = {};
 
@@ -21,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -84,80 +86,98 @@ class _HomePageState extends State<HomePage> {
                     : "images/emptyMenu.png"
                 : "images/emptyMenu.png";
 
-            debugPrint(imageMonday);
+            imageTuesday = menu["TUESDAY"]["update"] != null
+                ? menu["TUESDAY"]["update"]["img"] != ''
+                    ? "http://94.61.156.105:8080/images/${menu["TUESDAY"]["update"]["img"]}"
+                    : "images/emptyMenu.png"
+                : "images/emptyMenu.png";
 
-            if (menu["TUESDAY"]["update"] != null) {
-              if (menu["TUESDAY"]["update"]["img"] != '') {
-                imageTuesday = "http://94.61.156.105:8080/images/${menu["TUESDAY"]["update"]["img"]}";
-              } else {
-                imageTuesday = "images/emptyMenu.png";
-              }
-            } else {
-              imageTuesday = "images/emptyMenu.png";
-            }
-            if (menu["WEDNESDAY"]["update"] != null) {
-              if (menu["WEDNESDAY"]["update"]["img"] != '') {
-                imageWednesday = "http://94.61.156.105:8080/images/${menu["WEDNESDAY"]["update"]["img"]}";
-              } else {
-                imageWednesday = "images/emptyMenu.png";
-              }
-            } else {
-              imageWednesday = "images/emptyMenu.png";
-            }
-            if (menu["THURSDAY"]["update"] != null) {
-              if (menu["THURSDAY"]["update"]["img"] != '') {
-                imageThursday = "http://94.61.156.105:8080/images/${menu["THURSDAY"]["update"]["img"]}";
-              } else {
-                imageThursday = "images/emptyMenu.png";
-              }
-            } else {
-              imageThursday = "images/emptyMenu.png";
-            }
-            if (menu["FRIDAY"]["update"] != null) {
-              if (menu["FRIDAY"]["update"]["img"] != '') {
-                imageFriday = "http://94.61.156.105:8080/images/${menu["FRIDAY"]["update"]["img"]}";
-              } else {
-                imageFriday = "images/emptyMenu.png";
-              }
-            } else {
-              imageFriday = "images/emptyMenu.png";
-            }
+            imageWednesday = menu["WEDNESDAY"]["update"] != null
+                ? menu["WEDNESDAY"]["update"]["img"] != ''
+                    ? "http://94.61.156.105:8080/images/${menu["WEDNESDAY"]["update"]["img"]}"
+                    : "images/emptyMenu.png"
+                : "images/emptyMenu.png";
+
+            imageThursday = menu["THURSDAY"]["update"] != null
+                ? menu["THURSDAY"]["update"]["img"] != ''
+                    ? "http://94.61.156.105:8080/images/${menu["THURSDAY"]["update"]["img"]}"
+                    : "images/emptyMenu.png"
+                : "images/emptyMenu.png";
+
+            imageFriday = menu["FRIDAY"]["update"] != null
+                ? menu["FRIDAY"]["update"]["img"] != ''
+                    ? "http://94.61.156.105:8080/images/${menu["FRIDAY"]["update"]["img"]}"
+                    : "images/emptyMenu.png"
+                : "images/emptyMenu.png";
 
             return Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 20, left: 0, right: 0),
                 alignment: Alignment.center,
                 child: ListView(scrollDirection: Axis.horizontal, children: [
-                  // Create Meal Cards according to the exact day of the week
-                  MealCard(
-                    weekDay: "Segunda-Feira",
-                    menu: menuMonday,
-                    menuComplete: menu["MONDAY"],
-                    imagePath: imageMonday,
-                  ),
-                  MealCard(
-                    weekDay: "Terça-Feira",
-                    menu: menuTuesday,
-                    menuComplete: menu["TUESDAY"],
-                    imagePath: imageTuesday,
-                  ),
-                  MealCard(
-                    weekDay: "Quarta-Feira",
-                    menu: menuWednesday,
-                    menuComplete: menu["WEDNESDAY"],
-                    imagePath: imageWednesday,
-                  ),
-                  MealCard(
-                    weekDay: "Quinta-Feira",
-                    menu: menuThursday,
-                    menuComplete: menu["THURSDAY"],
-                    imagePath: imageThursday,
-                  ),
-                  MealCard(
-                    weekDay: "Sexta-Feira",
-                    menu: menuFriday,
-                    menuComplete: menu["FRIDAY"],
-                    imagePath: imageFriday,
-                  ),
+                  for (var i = getWeekDay(); i <= 4; i++)
+                    MealCard(
+                      tag: i.toString(),
+                      weekDay: days[i],
+                      imagePath: i == 0
+                          ? imageMonday
+                          : i == 1
+                              ? imageTuesday
+                              : i == 2
+                                  ? imageWednesday
+                                  : i == 3
+                                      ? imageThursday
+                                      : imageFriday,
+                      menu: i == 0
+                          ? menuMonday
+                          : i == 1
+                              ? menuTuesday
+                              : i == 2
+                                  ? menuWednesday
+                                  : i == 3
+                                      ? menuThursday
+                                      : menuFriday,
+                      menuComplete: i == 0
+                          ? menu["MONDAY"]
+                          : i == 1
+                              ? menu["TUESDAY"]
+                              : i == 2
+                                  ? menu["WEDNESDAY"]
+                                  : i == 3
+                                      ? menu["THURSDAY"]
+                                      : menu["FRIDAY"],
+                    ),
+                  for (int i = 0; i < getWeekDay(); i++)
+                    MealCard(
+                      tag: i.toString(),
+                      weekDay: days[i],
+                      imagePath: i == 0
+                          ? imageMonday
+                          : i == 1
+                              ? imageTuesday
+                              : i == 2
+                                  ? imageWednesday
+                                  : i == 3
+                                      ? imageThursday
+                                      : imageFriday,
+                      menu: i == 0
+                          ? menuMonday
+                          : i == 1
+                              ? menuTuesday
+                              : i == 2
+                                  ? menuWednesday
+                                  : i == 3
+                                      ? menuThursday
+                                      : menuFriday,
+                      menuComplete: i == 0
+                          ? menu["MONDAY"]
+                          : i == 1
+                              ? menu["TUESDAY"]
+                              : i == 2
+                                  ? menu["WEDNESDAY"]
+                                  : i == 3
+                                      ? menu["THURSDAY"]
+                                      : menu["FRIDAY"],
+                    )
                 ]));
           } else if (snapshot.hasError) {
             return const Center(
@@ -175,8 +195,10 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MealCard extends StatelessWidget {
-  const MealCard({Key? key, required this.weekDay, required this.imagePath, required this.menu, required this.menuComplete}) : super(key: key);
+  const MealCard({Key? key, required this.tag, required this.weekDay, required this.imagePath, required this.menu, required this.menuComplete})
+      : super(key: key);
 
+  final String tag;
   final String weekDay;
   final String imagePath;
   final Map<String, dynamic> menu;
@@ -192,7 +214,7 @@ class MealCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => EditPage(weekDay: weekDay, filePath: imagePath, menu: menu, menuComplete: menuComplete)),
+            MaterialPageRoute(builder: (context) => EditPage(tag: tag, weekDay: weekDay, filePath: imagePath, menu: menu, menuComplete: menuComplete)),
           );
         },
         child: Container(
@@ -228,7 +250,7 @@ class MealCard extends StatelessWidget {
                       height: 30,
                     ),
                     Hero(
-                      tag: imagePath,
+                      tag: tag,
                       child: Material(
                         color: Colors.transparent,
                         child: Container(
@@ -508,5 +530,9 @@ class MealCard extends StatelessWidget {
 int getWeekDay() {
   final today = DateTime.now();
 
-  return today.weekday;
+  if (today.weekday > 4) {
+    return 0;
+  } else {
+    return today.weekday - 1;
+  }
 }

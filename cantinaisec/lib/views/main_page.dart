@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // get menu from shared-preferences
     SharedPreferences.getInstance().then((prefs) {
       //  Olá Rafael e Tânia :)
       if (prefs.getString('weeklyMenu') != null) {
@@ -67,11 +66,6 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
           setState(() {
-            // refresh the page
-            // get the menu from the server
-            // save the menu in shared preferences
-            // CircularProgressIndicator
-            debugPrint('refreshing');
             Future<http.Response> response = http.get(Uri.parse('http://94.61.156.105:8080/menu'));
             response.then((value) {
               SharedPreferences.getInstance().then((prefs) {
@@ -86,7 +80,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Builder(
         builder: (BuildContext context) {
-          debugPrint('menu:${menu.isEmpty}');
           if (menu.isEmpty) {
             return const Center(
               child: Text(
@@ -243,6 +236,7 @@ class MealCard extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => EditPage(tag: tag, weekDay: weekDay, filePath: imagePath, menu: menu, menuComplete: menuComplete)),
           );
+
         },
         child: Container(
             width: screenWidth * 0.955,

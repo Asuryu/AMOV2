@@ -1,6 +1,7 @@
 import 'package:cantinaisec/views/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' show jsonEncode, utf8, base64Encode;
 import 'dart:io';
 
@@ -21,7 +22,6 @@ class EditPage extends StatefulWidget {
 class _EditPageState extends State<EditPage> {
   _EditPageState(this.tag, this.weekDay, this.filePath, this.menu, this.menuComplete);
 
-  //final Menu selectedMenu;
   final String tag;
   final String weekDay;
   final String filePath;
@@ -71,9 +71,6 @@ class _EditPageState extends State<EditPage> {
             ],
           ),
         ),
-        // generate a list of input fields with labels (sopa, carne, peixe, vegetariano, sobremesa)
-        // set input text color and border to white (background is black)
-        // add padding to the text fields
         body: Container(
             padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 10),
             alignment: Alignment.center,
@@ -425,17 +422,26 @@ class _EditPageState extends State<EditPage> {
                     'img': base64Img,
                   }),
                   headers: {'Content-Type': 'application/json; charset=UTF-8'});
-              response.then((value) => {
+              response.then((value) async => {
+                    
                     if (value.statusCode == 201)
                       {
+                        
+                        await http.get(Uri.parse('http://94.61.156.105:8080/menu')).then((value) => {
+                          SharedPreferences.getInstance().then((prefs) {
+                            prefs.setString('weeklyMenu', value.body);
+                          })
+                        }),
+                        
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Menu atualizado com sucesso!'),
                           backgroundColor: Color.fromARGB(255, 96, 189, 53),
                         )),
-                        Navigator.pushReplacement(
+
+                        Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const HomePage()),
-                        )
+                          MaterialPageRoute(builder: (context) => const HomePage()))
+
                       }
                     else if (value.statusCode == 403)
                       {
@@ -459,4 +465,13 @@ class _EditPageState extends State<EditPage> {
         ),
         backgroundColor: const Color.fromARGB(255, 17, 17, 17));
   }
+}
+
+void saveMenuInPrefs() async {
+  Future<http.Response> response = http.get(Uri.parse('http://94.61.156.105:8080/menu'));
+  response.then((value) {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString('weeklyMenu', value.body);
+    });
+  });
 }

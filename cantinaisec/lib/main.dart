@@ -1,10 +1,5 @@
 import 'package:cantinaisec/views/main_page.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:location/location.dart';
-import 'package:cantinaisec/views/edit_page.dart';
-import 'dart:convert';
 
 void main() {
   runApp(const MyApp());

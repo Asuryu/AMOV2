@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' show jsonEncode, utf8, base64Encode;
-import 'dart:io';
 
 class EditPage extends StatefulWidget {
   const EditPage({Key? key, required this.tag, required this.weekDay, required this.filePath, required this.menu, required this.menuComplete})
@@ -423,25 +422,18 @@ class _EditPageState extends State<EditPage> {
                   }),
                   headers: {'Content-Type': 'application/json; charset=UTF-8'});
               response.then((value) async => {
-                    
                     if (value.statusCode == 201)
                       {
-                        
                         await http.get(Uri.parse('http://94.61.156.105:8080/menu')).then((value) => {
-                          SharedPreferences.getInstance().then((prefs) {
-                            prefs.setString('weeklyMenu', value.body);
-                          })
-                        }),
-                        
+                              SharedPreferences.getInstance().then((prefs) {
+                                prefs.setString('weeklyMenu', value.body);
+                              })
+                            }),
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Menu atualizado com sucesso!'),
                           backgroundColor: Color.fromARGB(255, 96, 189, 53),
                         )),
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const HomePage()))
-
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()))
                       }
                     else if (value.statusCode == 403)
                       {
@@ -465,13 +457,4 @@ class _EditPageState extends State<EditPage> {
         ),
         backgroundColor: const Color.fromARGB(255, 17, 17, 17));
   }
-}
-
-void saveMenuInPrefs() async {
-  Future<http.Response> response = http.get(Uri.parse('http://94.61.156.105:8080/menu'));
-  response.then((value) {
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString('weeklyMenu', value.body);
-    });
-  });
 }

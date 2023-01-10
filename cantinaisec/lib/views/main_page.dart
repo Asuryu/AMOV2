@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cantinaisec/views/edit_page.dart';
-import 'dart:convert' show jsonDecode, jsonEncode, utf8;
+import 'dart:convert' show jsonDecode, utf8;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -236,7 +234,6 @@ class MealCard extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => EditPage(tag: tag, weekDay: weekDay, filePath: imagePath, menu: menu, menuComplete: menuComplete)),
           );
-
         },
         child: Container(
             width: screenWidth * 0.955,
@@ -340,8 +337,8 @@ class MealCard extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 20,
                               fontFamily: 'AdiNeuePRO',
-                            )),
-                    if (menuComplete['update'] == null)
+                            ))
+                    else
                       Text(utf8.decode(menuComplete['original']['soup'].toString().codeUnits),
                           style: const TextStyle(
                             color: Colors.white,
